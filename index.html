@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#07040a">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="A private interactive romantic love story and birthday celebration made with all my heart.">
+  <title>Happy Birthday, My Love ❤️ | Our Little World</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Sound Toggle Floating Pill -->
+  <div class="ambient-controls">
+    <button class="sound-toggle-btn" id="sound-toggle-btn" aria-label="Toggle Sound" title="Sound Effects & Music">
+      <div class="sound-wave" id="sound-equalizer">
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+      </div>
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       1. SCREEN: LOVE CODE / PASSWORD SCREEN
+       ========================================================================= -->
+  <div id="lock-screen" class="lock-screen">
+    <div class="lock-header">
+      <div class="glowing-lock-heart">❤️</div>
+      <h1 class="lock-title">This little world is only for you</h1>
+      <p class="lock-subtitle">Enter Your Love Code</p>
+      
+      <!-- 4 PIN Indicator Dots -->
+      <div class="pin-display" id="pin-display">
+        <div class="pin-dot" id="pin-dot-0"></div>
+        <div class="pin-dot" id="pin-dot-1"></div>
+        <div class="pin-dot" id="pin-dot-2"></div>
+        <div class="pin-dot" id="pin-dot-3"></div>
+      </div>
+
+      <!-- Wrong Code Error Message -->
+      <div class="lock-error-msg" id="lock-error-msg">Hmm... that's not it, my love ❤️</div>
+    </div>
+
+    <!-- Custom Keypad -->
+    <div class="keypad-container" id="keypad">
+      <button class="key-btn" data-key="1">1</button>
+      <button class="key-btn" data-key="2">2</button>
+      <button class="key-btn" data-key="3">3</button>
+      <button class="key-btn" data-key="4">4</button>
+      <button class="key-btn" data-key="5">5</button>
+      <button class="key-btn" data-key="6">6</button>
+      <button class="key-btn" data-key="7">7</button>
+      <button class="key-btn" data-key="8">8</button>
+      <button class="key-btn" data-key="9">9</button>
+      <button class="key-btn action-btn" data-key="backspace" aria-label="Delete">⌫</button>
+      <button class="key-btn" data-key="0">0</button>
+      <button class="key-btn action-btn" data-key="heart" aria-label="Love">❤️</button>
+    </div>
+
+    <div class="lock-hint" id="lock-hint">
+      <span>Hint: Our special code (Default: <strong>1048</strong>)</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CINEMATIC UNLOCK STAGE
+       ========================================================================= -->
+  <div id="unlock-stage">
+    <div class="merging-heart" id="merging-heart">❤️</div>
+    <div class="unlocking-text">Unlocking our little world...</div>
+  </div>
+
+  <!-- =========================================================================
+       2. CELEBRATION OVERLAY (Happy Birthday Audio + Poppers)
+       ========================================================================= -->
+  <div id="celebration-overlay">
+    <div class="celebration-bg-wrapper">
+      <img src="assets/romantics-view.jpg" alt="Romantic View" class="celebration-bg-img">
+      <div class="celebration-bg-scrim"></div>
+    </div>
+    <div class="celebration-sparkles">✨ 🎉 ✨</div>
+    <div class="bday-title-script">Happy Birthday</div>
+    <div class="bday-sub-title" id="celebration-name">My Love ❤️</div>
+    
+    <div class="popper-badges">
+      <span class="popper-badge">🎉 POP!</span>
+      <span class="popper-badge">❤️ POP!</span>
+      <span class="popper-badge">✨ POP!</span>
+    </div>
+
+    <!-- Celebration Audio Indicator with Replay Button -->
+    <div class="audio-celebration-pill" id="celebration-audio-indicator">
+      <span class="audio-note-icon">🎵</span>
+      <span class="audio-status-text">Playing Birthday Audio</span>
+      <button class="audio-replay-mini-btn" id="btn-replay-audio" type="button" aria-label="Replay Birthday Audio">↺ Replay</button>
+    </div>
+
+    <button class="btn-open-world" id="btn-enter-world">
+      <span>Enter Our World</span>
+      <span>→</span>
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       MAIN EXPERIENCE (Story & Interactive Sections)
+       ========================================================================= -->
+  <main id="main-experience">
+
+    <!-- 7. CINEMATIC BIRTHDAY HERO -->
+    <section class="hero-section" id="hero-section">
+      <div class="hero-background-wrapper">
+        <img src="assets/couple.jpg" alt="Our Romantic Memory" class="hero-image" id="hero-main-img">
+        <div class="hero-vignette"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-tag">A Love Story For You</div>
+        <div class="hero-heading-script">Happy Birthday</div>
+        <h2 class="hero-heading-main" id="hero-name-heading">My Love ❤️</h2>
+        <p class="hero-emotional-line">"I made this little world just for you, to celebrate the most precious gift in my life."</p>
+        
+        <div class="scroll-indicator" id="scroll-to-story">
+          <span>Scroll to discover our story</span>
+          <span>↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. OUR LITTLE WORLD -->
+    <section class="little-world-section" id="little-world-section">
+      <span class="section-label">Chapter 01</span>
+      <h3 class="section-title">Welcome to Our Little World ❤️</h3>
+      <p class="section-subtitle">Every little moment with you became a beautiful memory.</p>
+
+      <div class="little-world-card">
+        <div class="little-world-img-wrap">
+          <img src="assets/romantics-view.jpg" alt="Our Journey" loading="lazy">
+        </div>
+        <p class="little-world-quote">"In a world of billions of people, somehow my heart found its home in you."</p>
+      </div>
+
+      <button class="btn-start-story" id="btn-start-story">
+        <span>Start Our Story</span>
+        <span>→</span>
+      </button>
+    </section>
+
+    <!-- 9. OUR STORY TIMELINE -->
+    <section class="story-timeline-section" id="story-timeline-section">
+      <span class="section-label">Chapter 02</span>
+      <h3 class="section-title">Our Story Timeline ❤️</h3>
+      <p class="section-subtitle">The beautiful steps that led us to where we are today.</p>
+
+      <div class="timeline-container">
+        <div class="timeline-track">
+          <div class="timeline-progress-line" id="timeline-progress"></div>
+        </div>
+
+        <!-- Node 1 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card">
+            <span class="timeline-tag">The Beginning</span>
+            <h4 class="timeline-item-title">Where It All Began</h4>
+            <div class="timeline-thumb">
+              <img src="assets/1.jpg" alt="Where It All Began" loading="lazy">
+            </div>
+            <p class="timeline-item-desc">A simple hello that changed everything. Neither of us knew then how deeply our lives were about to intertwine.</p>
+          </div>
+        </div>
+
+        <!-- Node 2 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card">
+            <span class="timeline-tag">Our First Memory</span>
+            <h4 class="timeline-item-title">The First Spark</h4>
+            <div class="timeline-thumb">
+              <img src="assets/2.jpg" alt="The First Spark" loading="lazy">
+            </div>
+            <p class="timeline-item-desc">The way you laughed, the way time completely froze, and the feeling that I never wanted that conversation to end.</p>
+          </div>
+        </div>
+
+        <!-- Node 3 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card">
+            <span class="timeline-tag">The Crazy Days</span>
+            <h4 class="timeline-item-title">Laughs & Adventures</h4>
+            <div class="timeline-thumb">
+              <img src="assets/3.jpg" alt="Laughs & Adventures" loading="lazy">
+            </div>
+            <p class="timeline-item-desc">Silly inside jokes, late-night phone calls, random drives, and the comfort of being completely ourselves together.</p>
+          </div>
+        </div>
+
+        <!-- Node 4 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card">
+            <span class="timeline-tag">Beautiful Moments</span>
+            <h4 class="timeline-item-title">Quiet Tenderness</h4>
+            <div class="timeline-thumb">
+              <img src="assets/romantics-view.jpg" alt="Quiet Tenderness" loading="lazy">
+            </div>
+            <p class="timeline-item-desc">Holding your hand in quiet silence, knowing that no place on earth feels warmer or safer than right beside you.</p>
+          </div>
+        </div>
+
+        <!-- Node 5 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card">
+            <span class="timeline-tag">Today</span>
+            <h4 class="timeline-item-title">Your Special Day</h4>
+            <div class="timeline-thumb">
+              <img src="assets/4.jpg" alt="Your Special Day" loading="lazy">
+            </div>
+            <p class="timeline-item-desc">Celebrating you — your heart, your beauty, your warmth, and the immense happiness you bring to my soul every day.</p>
+          </div>
+        </div>
+
+        <!-- Node 6 -->
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content-card">
+            <span class="timeline-tag">Our Future</span>
+            <h4 class="timeline-item-title">Forever & Beyond</h4>
+            <div class="timeline-thumb">
+              <img src="assets/5.jpg" alt="Forever & Beyond" loading="lazy">
+            </div>
+            <p class="timeline-item-desc">Countless more sunsets, endless adventures, and a promise that I will love you more with every passing day.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. MEMORIES — MULTI-TEMPLATE CREATIVE GALLERY -->
+    <section class="memories-section" id="memories-section">
+      <span class="section-label">Chapter 03</span>
+      <h3 class="section-title">Moments With You 📸</h3>
+      <p class="section-subtitle">Every photo holds a precious piece of our journey.</p>
+
+      <div class="memories-container">
+
+        <!-- Template A: Polaroid -->
+        <div class="polaroid-card" id="polaroid-memory">
+          <div class="polaroid-tape"></div>
+          <img src="assets/first-photo.jpg" alt="Our First Photo" class="polaroid-photo" loading="lazy">
+          <div class="polaroid-caption">Our First Photo ❤️</div>
+        </div>
+
+        <!-- Template B: Film Strip -->
+        <div class="film-strip-card">
+          <div class="film-sprockets">
+            <div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div>
+          </div>
+          <div class="film-frame">
+            <img src="assets/astetic.jpg" alt="Aesthetic Memory" loading="lazy">
+          </div>
+          <div class="film-sprockets">
+            <div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div><div class="sprocket-hole"></div>
+          </div>
+          <p class="film-caption">"Aesthetic skies, golden hours, and peaceful moments with my favourite person."</p>
+        </div>
+
+        <!-- Template C: Heart Frame -->
+        <div class="heart-frame-card">
+          <div class="heart-frame-wrapper">
+            <div class="heart-svg-wrapper">
+              <img src="assets/cute.jpg" alt="Cute Memory" class="heart-svg-mask-img" loading="lazy">
+            </div>
+          </div>
+          <p class="heart-frame-caption">Your adorable smile makes everything bloom with love ❤️</p>
+        </div>
+
+        <!-- Template D: Floating Photo -->
+        <div class="floating-photo-card" id="floating-photo-tilt">
+          <div class="floating-photo-inner">
+            <img src="assets/4.jpg" alt="Floating Memory" loading="lazy">
+            <div class="floating-photo-caption">Floating on cloud nine whenever I'm with you ✨</div>
+          </div>
+        </div>
+
+        <!-- Template E: Envelope Memory -->
+        <div class="envelope-memory-card" id="envelope-memory-card">
+          <div class="envelope-mini-icon">💌</div>
+          <h4 class="envelope-prompt-text">Open this memory</h4>
+          <span class="envelope-sub-prompt">Tap to peek inside</span>
+          
+          <div class="envelope-reveal-box" id="envelope-reveal-box">
+            <img src="assets/5.jpg" alt="Secret Memory" class="envelope-revealed-img" loading="lazy">
+            <p class="envelope-revealed-note">"I looked at you and knew right then, there was nowhere else I'd rather be."</p>
+          </div>
+        </div>
+
+        <!-- Template F: Then & Now -->
+        <div class="then-now-container">
+          <div class="then-now-header">
+            <span class="then-now-tag">THEN ❤️ NOW</span>
+            <div class="then-now-toggle-bar">
+              <button class="then-now-btn active" id="btn-show-then">Then</button>
+              <button class="then-now-btn" id="btn-show-now">Now</button>
+            </div>
+          </div>
+          <div class="then-now-photo-wrap" id="then-now-wrap">
+            <img src="assets/6.jpg" alt="Then Memory" class="then-photo" loading="lazy">
+            <img src="assets/7.jpg" alt="Now Memory" class="now-photo" loading="lazy">
+          </div>
+          <p class="then-now-desc" id="then-now-caption">Then: Sweet shy smiles from our earliest days together...</p>
+        </div>
+
+        <!-- Template G: Swipe Memory Cards -->
+        <div class="swipe-cards-section">
+          <div class="swipe-deck-wrapper" id="swipe-deck-wrapper">
+            <!-- Populated via JS from CONFIG.memories -->
+          </div>
+          <div class="swipe-deck-controls">
+            <button class="swipe-btn" id="swipe-prev-btn" aria-label="Previous Memory">←</button>
+            <span class="swipe-counter" id="swipe-counter">01 / 13</span>
+            <button class="swipe-btn" id="swipe-next-btn" aria-label="Next Memory">→</button>
+          </div>
+        </div>
+
+        <!-- All Moments Photo Reel Wall (Zero Duplicates) -->
+        <div class="moments-wall-section">
+          <h4 class="moments-wall-title">Our Moments Reel 🌹</h4>
+          <p class="moments-wall-subtitle">Tap any photo to view in full</p>
+          <div class="moments-grid" id="moments-grid">
+            <div class="moments-grid-item featured" data-src="assets/couple.jpg" data-caption="You and Me — Together Forever ❤️">
+              <img src="assets/couple.jpg" alt="Together" loading="lazy">
+            </div>
+            <div class="moments-grid-item featured" data-src="assets/suprice.jpg" data-caption="Will You Give This Life For Me? ❤️">
+              <img src="assets/suprice.jpg" alt="Special Surprise" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/first-photo.jpg" data-caption="Our First Photo — Where It All Began ✨">
+              <img src="assets/first-photo.jpg" alt="First Photo" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/1.jpg" data-caption="Chapter 01 — A Simple Hello That Changed Everything 💕">
+              <img src="assets/1.jpg" alt="Chapter 1" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/2.jpg" data-caption="Chapter 02 — The First Spark & That Unforgettable Smile ✨">
+              <img src="assets/2.jpg" alt="Chapter 2" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/3.jpg" data-caption="Silly Laughs & Sweet Conversations 🌹">
+              <img src="assets/3.jpg" alt="Memories" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/4.jpg" data-caption="Floating On Cloud Nine With You ✨">
+              <img src="assets/4.jpg" alt="Moments" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/5.jpg" data-caption="Quiet Tenderness & Warm Hugs ❤️">
+              <img src="assets/5.jpg" alt="Moments" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/6.jpg" data-caption="Unforgettable Days We Treasure 🌟">
+              <img src="assets/6.jpg" alt="Moments" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/7.jpg" data-caption="Celebrating Your Beauty & Warmth Everyday 🥰">
+              <img src="assets/7.jpg" alt="Moments" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/cute.jpg" data-caption="Cutest Smile in the Entire Universe 🥰">
+              <img src="assets/cute.jpg" alt="Cute" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/astetic.jpg" data-caption="Aesthetic Golden Hours 🌅">
+              <img src="assets/astetic.jpg" alt="Aesthetic" loading="lazy">
+            </div>
+            <div class="moments-grid-item" data-src="assets/romantics-view.jpg" data-caption="Our Little Romantic World 🌟">
+              <img src="assets/romantics-view.jpg" alt="Romantics View" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 12. REASONS WHY I LOVE YOU -->
+    <section class="reasons-section" id="reasons-section">
+      <span class="section-label">Chapter 04</span>
+      <h3 class="section-title">Reasons Why I Love You ❤️</h3>
+      <p class="section-subtitle">Swipe or tap to see what makes you so irreplaceable.</p>
+
+      <div class="reasons-carousel" id="reasons-carousel">
+        <!-- Rendered by JS from CONFIG.reasons -->
+      </div>
+
+      <div class="reason-indicators" id="reason-indicators"></div>
+    </section>
+
+    <!-- 13. SPECIAL LETTER INVITATION -->
+    <section class="letter-invite-section" id="letter-invite-section">
+      <span class="section-label">Chapter 05</span>
+      <h3 class="section-title">A Special Letter 💌</h3>
+      <p class="section-subtitle">A quiet whisper straight from my heart to yours.</p>
+
+      <button class="btn-start-story" id="btn-enter-letter-cinema">
+        <span>Open Special Letter</span>
+        <span>❤️</span>
+      </button>
+    </section>
+
+    <!-- 16. SURPRISE GIFT -->
+    <section class="gift-section" id="surprise-section">
+      <span class="section-label">Chapter 06</span>
+      <h3 class="section-title">One Last Thing...</h3>
+      <p class="section-subtitle">A little surprise for you ❤️</p>
+
+      <div class="gift-box-container" id="gift-box-container">
+        <div class="gift-lid">
+          <div class="gift-bow">🎀</div>
+        </div>
+        <div class="gift-box-base">
+          <div class="gift-ribbon-v"></div>
+          <div class="gift-ribbon-h"></div>
+        </div>
+      </div>
+      <div class="gift-tap-hint" id="gift-tap-hint">Tap to open 🎁</div>
+
+      <!-- Revealed Card -->
+      <div class="surprise-revealed-card" id="surprise-revealed-card">
+        <div class="surprise-photo-frame">
+          <img src="assets/suprice.jpg" alt="Our Special Memory" class="surprise-revealed-photo">
+        </div>
+
+        <h4 class="voucher-title">My Whole Heart & Life ❤️</h4>
+
+        <p class="surprise-question-text">
+          "Meeting you made my world infinitely brighter. Every heartbeat, every smile, and every dream I have is for you..."
+        </p>
+
+        <div class="surprise-question-highlight">
+          Will you give this life for me? ❤️
+        </div>
+
+        <button class="btn-surprise-yes" id="btn-surprise-yes" type="button">
+          <span>YES, My Whole Life is Yours!</span>
+          <span>❤️</span>
+        </button>
+
+        <div class="voucher-token">
+          <strong>MY ETERNAL PROMISE TO YOU:</strong><br>
+          ✨ Unlimited warm hugs anytime<br>
+          🌹 Cherishing you through every high and low<br>
+          🍦 Free treats, laughter & endless patience<br>
+          ❤️ Loving you more with every heartbeat
+        </div>
+        <p style="font-size: 0.85rem; color: var(--light-blush); text-align: center; margin-top: 10px;">Valid for this lifetime and all lifetimes to come ❤️</p>
+      </div>
+    </section>
+
+    <!-- 17. FINAL ROMANTIC QUESTION -->
+    <section class="final-question-section" id="question-section">
+      <div class="question-photo-wrap">
+        <img src="assets/suprice.jpg" alt="You and Me" class="question-sil-img" loading="lazy">
+      </div>
+      <p class="question-lead">After everything we've shared, from the bottom of my heart...</p>
+      <h3 class="question-headline">Will you give this life for me, my love? ❤️</h3>
+
+      <div class="question-actions" id="question-actions">
+        <button class="btn-yes" id="btn-yes">YES ❤️</button>
+        <button class="btn-no" id="btn-no">NO</button>
+      </div>
+      <div class="no-reaction-tooltip" id="no-tooltip"></div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       13 & 14. CINEMATIC HEARTBEAT LETTER STAGE (Full-Screen Modal)
+       ========================================================================= -->
+  <div id="letter-cinema-stage">
+    <div class="letter-prompt-intro">There's something I want you to read...</div>
+    
+    <div class="pulsing-envelope-wrapper" id="cinema-pulsing-envelope">
+      <div class="cinema-envelope">
+        <div class="wax-seal">💌</div>
+      </div>
+    </div>
+
+    <div class="tap-letter-instruction">Tap the letter ❤️</div>
+  </div>
+
+  <!-- Unfolded Letter Reading Sheet -->
+  <div id="letter-reading-modal">
+    <div class="letter-paper">
+      <div class="letter-wax-stamp">❤️</div>
+      <div class="bday-title-script" style="font-size: 2.5rem; text-align: center; color: #b8499b; margin-top: 8px;">My Love</div>
+
+      <!-- Optional Letter Audio Player -->
+      <div class="letter-audio-player" id="letter-audio-player">
+        <button class="letter-audio-btn" id="letter-audio-play-btn" aria-label="Play Voice Letter">▶</button>
+        <div class="letter-audio-info">
+          <div class="letter-audio-title">Voice Recording 🎙️</div>
+          <div class="letter-audio-desc">Listen to me reading this for you</div>
+        </div>
+      </div>
+
+      <!-- Letter Body Text (Configurable via app.js) -->
+      <div class="letter-body-text" id="letter-content-text">
+        <!-- Injected from CONFIG.loveLetter -->
+      </div>
+    </div>
+
+    <button class="btn-finish-letter" id="btn-close-letter">
+      <span>Continue to Surprise</span>
+      <span>→</span>
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       18. FINAL EMOTIONAL SCREEN (After YES is tapped)
+       ========================================================================= -->
+  <div id="final-screen-modal">
+    <div class="final-photo-frame">
+      <img src="assets/suprice.jpg" alt="Forever Together">
+    </div>
+
+    <div class="final-text-block">
+      <div class="final-heading">Happy Birthday</div>
+      <div class="bday-sub-title" id="final-recipient-name">My Love ❤️</div>
+      <p class="final-message">
+        Thank you for saying YES to giving this life to me. Every moment, every laugh, and every beat of my heart belongs only to you.
+      </p>
+      <div class="final-love-tag">Together For This Lifetime & Beyond ❤️</div>
+    </div>
+
+    <button class="btn-replay-story" id="btn-replay-story">
+      <span>Replay Our Story</span>
+      <span>↺</span>
+    </button>
+  </div>
+
+  <!-- Photo Lightbox Modal -->
+  <div id="photo-lightbox-modal" class="lightbox-modal">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox">✕</button>
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="Enlarged Memory">
+      </div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       19. FLOATING BOTTOM NAVIGATION DOCK
+       ========================================================================= -->
+  <nav id="bottom-nav" class="nav-hidden">
+    <button class="nav-item active" data-target="hero-section">
+      <span class="nav-icon">❤️</span>
+      <span>Home</span>
+    </button>
+    <button class="nav-item" data-target="story-timeline-section">
+      <span class="nav-icon">📖</span>
+      <span>Story</span>
+    </button>
+    <button class="nav-item" data-target="memories-section">
+      <span class="nav-icon">📸</span>
+      <span>Memories</span>
+    </button>
+    <button class="nav-item" data-target="letter-invite-section">
+      <span class="nav-icon">💌</span>
+      <span>Letter</span>
+    </button>
+    <button class="nav-item" data-target="surprise-section">
+      <span class="nav-icon">🎁</span>
+      <span>Surprise</span>
+    </button>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
